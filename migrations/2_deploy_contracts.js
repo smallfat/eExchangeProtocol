@@ -18,7 +18,7 @@ module.exports = function(deployer, network, accounts) {
     deployer.deploy(Verification);
     deployer.link(Verification, ScryProtocol);
 
-    deployer.deploy(ScryToken).then(function(instance) {
+    deployer.deploy(ScryToken, "eExchange", "exg", 10000000000000).then(function(instance) {
         tokenContract = instance;
         console.log("> token   : ", tokenContract.address);
 

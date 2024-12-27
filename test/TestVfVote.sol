@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 import "truffle/Assert.sol";
@@ -6,7 +8,7 @@ import "../contracts/lib/verification.sol";
 import "../contracts/lib/common.sol";
 import "../contracts/ScryToken.sol";
 
-contract TestVfVote is ScryToken {
+contract TestVfVote is ScryToken("TestVfVote", "tvv", 100000000000) {
     common.DataSet ds;
 
     ERC20 token = this;
@@ -46,7 +48,7 @@ contract TestVfVote is ScryToken {
         ds.conf = common.Configuration(2, 10000, 300,   1, 0, 500,   0, 5, 2,   0, 32);
     }
 
-    function checkParamsForVote(bool judge, string comments) internal view {
+    function checkParamsForVote(bool judge, string memory comments) internal view {
         require(balanceOf(verifier1) == 1000000000, "token balance of msg.sender is wrong");
         require(balanceOf(address(this)) == 0, "token balance of test contract is wrong. ");
 
@@ -116,7 +118,7 @@ contract TestVfVote is ScryToken {
         ds.verifiers.validVerifierCount = 4;
     }
 
-    function stringCompare(string str1, string str2) internal pure returns(bool) {
+    function stringCompare(string memory str1, string memory str2) internal pure returns(bool) {
         require(bytes(str1).length == bytes(str2).length);
 
         return keccak256(abi.encodePacked(str1)) == keccak256(abi.encodePacked(str2));

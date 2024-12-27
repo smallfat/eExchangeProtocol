@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 import "truffle/Assert.sol";
@@ -17,7 +19,7 @@ contract TestTxCreation {
         proofDataIds[1] = "";
         string memory desc = "";
         bool supportVerify = true;
-        address seller = 0x01234;
+        address seller = address(0x01234);
 
         ds.pubData.map[publishId] = common.DataInfoPublished(
             price,
@@ -38,12 +40,12 @@ contract TestTxCreation {
 
         string memory publishId = "pid";
         address[] memory verifiers = new address[](2);
-        verifiers[0] = 0x01;
-        verifiers[1] = 0x02;
+        verifiers[0] = address(0x01);
+        verifiers[1] = address(0x02);
 
         address[] memory arbitrators = new address[](2);
-        arbitrators[0] = 0x03;
-        arbitrators[1] = 0x04;
+        arbitrators[0] = address(0x03);
+        arbitrators[1] = address(0x04);
 
         string memory seqNo = "seq no";
         uint256 fee = 10000;
@@ -64,7 +66,7 @@ contract TestTxCreation {
 
         Assert.equal(ds.conf.transactionSeq, 11, "transaction sequence number should be correct");
 
-        address seller = 0x01234;
+        address seller = address(0x01234);
         common.TransactionItem storage txData = ds.txData.map[10];
         Assert.equal(txData.used, true, "transaction data should be not empty");
         Assert.equal(txData.buyer, msg.sender, "buyer should be correct");

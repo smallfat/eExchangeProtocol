@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 import "truffle/Assert.sol";
@@ -6,7 +8,7 @@ import "../contracts/lib/verification.sol";
 import "../contracts/lib/common.sol";
 import "../contracts/ScryToken.sol";
 
-contract TestVfRegister is ScryToken {
+contract TestVfRegister is ScryToken("TestVfRegister", "tvr", 100000000000) {
     common.DataSet ds;
 
     ERC20 token = this;
